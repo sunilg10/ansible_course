@@ -4,12 +4,14 @@
   pre_tasks:
      
   - name: install updated for fedora
+    tags: always
     ansible.builtin.dnf:
       update_only: yes
       update_cache: yes
     when: ansible_distribution == "Fedora"    
     
   - name: Install updates for Ubuntu
+    tags: always
     ansible.builtin.apt:
       upgrade: dist
       update_cache: yes
@@ -19,6 +21,7 @@
   become: yes
   tasks:
   - name: install apache on web servers
+    tags: apache, ubuntu
     ansible.builtin.apt:
       name:
        - apache2
@@ -26,6 +29,7 @@
     when: ansible_distribution == "Ubuntu"     
 
 - hosts: db_Servers
+  tags: db, fedora
   become: yes
   tasks:
   - name: install mariadb package on db servers

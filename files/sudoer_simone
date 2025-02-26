@@ -1,0 +1,2 @@
+# Managed by ansible
+simone ALL=(ALL) NOPASSWD: ALL
